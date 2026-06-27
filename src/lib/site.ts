@@ -5,6 +5,7 @@ export const SITE = {
   url: 'https://brett-buskirk.dev',
   email: 'brett@brett-buskirk.dev',
   github: 'https://github.com/brett-buskirk',
+  linkedin: 'https://www.linkedin.com/in/brett-buskirk/',
 };
 
 export const NAV = [
