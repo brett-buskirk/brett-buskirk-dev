@@ -1,40 +1,160 @@
 ---
 import { SITE } from '../lib/site';
+
+const formAction = `https://formspree.io/f/${SITE.formspreeId}`;
 ---
 
 <section id="contact" class="border-t border-line px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
   <div class="mx-auto max-w-6xl">
-    <div class="mx-auto max-w-2xl text-center">
+    <div class="mx-auto max-w-xl">
 
       <p class="font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent">Contact</p>
-
-      <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
         Let's build something.
       </h2>
-
-      <p class="mt-5 text-lg leading-relaxed text-muted">
-        Ready to stand up real infrastructure? Send me what you're working on
-        and we'll figure out the right scope together.
+      <p class="mt-4 text-muted leading-relaxed">
+        Tell me what you're working on — the problem, where you're at, and what you need.
+        I'll get back to you within one business day.
       </p>
 
-      <div class="mt-10 flex flex-col items-center gap-4">
-        <a
-          href={`mailto:${SITE.email}`}
-          class="inline-flex items-center gap-2 rounded-md bg-accent px-8 py-3.5 text-base font-semibold text-bg hover:bg-accent-2 transition-colors duration-150"
-        >
-          Start a project
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
-          </svg>
-        </a>
-        <a
-          href={`mailto:${SITE.email}`}
-          class="font-mono text-sm text-muted hover:text-ink transition-colors"
-        >
-          {SITE.email}
-        </a>
+      <!-- Contact form -->
+      <form
+        id="contact-form"
+        action={formAction}
+        method="POST"
+        class="mt-10 space-y-5"
+        novalidate
+      >
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label for="name" class="block font-mono text-[10px] font-medium uppercase tracking-widest text-muted mb-2">
+              Name <span aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              autocomplete="name"
+              placeholder="Your name"
+              class="w-full rounded-md border border-line bg-surface-2 px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/40 transition-colors duration-150 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50"
+            />
+          </div>
+          <div>
+            <label for="email" class="block font-mono text-[10px] font-medium uppercase tracking-widest text-muted mb-2">
+              Email <span aria-hidden="true">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              autocomplete="email"
+              placeholder="you@company.com"
+              class="w-full rounded-md border border-line bg-surface-2 px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/40 transition-colors duration-150 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="message" class="block font-mono text-[10px] font-medium uppercase tracking-widest text-muted mb-2">
+            What are you working on? <span aria-hidden="true">*</span>
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows="5"
+            placeholder="Describe the problem, where your infrastructure is today, and what you're trying to get to."
+            class="w-full rounded-md border border-line bg-surface-2 px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/40 transition-colors duration-150 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/50 resize-y"
+          ></textarea>
+        </div>
+
+        <!-- Error message -->
+        <p id="form-error" class="hidden text-sm text-red-400" role="alert"></p>
+
+        <div class="flex items-center justify-between gap-6">
+          <button
+            id="submit-btn"
+            type="submit"
+            class="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-semibold text-bg hover:bg-accent-2 transition-colors duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            <span id="submit-text">Send message</span>
+            <svg id="submit-icon" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+            </svg>
+            <svg id="submit-spinner" class="hidden h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+            </svg>
+          </button>
+
+          <p class="text-xs text-muted">
+            Or email directly: <a href={`mailto:${SITE.email}`} class="text-ink hover:text-accent transition-colors">{SITE.email}</a>
+          </p>
+        </div>
+      </form>
+
+      <!-- Success state -->
+      <div id="form-success" class="hidden mt-10 rounded-xl border border-accent/30 bg-surface-2 p-8 text-center" role="status">
+        <svg class="mx-auto mb-4 h-10 w-10 text-accent" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <h3 class="text-base font-semibold text-ink">Message sent!</h3>
+        <p class="mt-2 text-sm text-muted">Thanks for reaching out. I'll get back to you within one business day.</p>
       </div>
 
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const submitText = document.getElementById('submit-text')!;
+  const submitIcon = document.getElementById('submit-icon')!;
+  const submitSpinner = document.getElementById('submit-spinner')!;
+  const successMsg = document.getElementById('form-success')!;
+  const errorMsg = document.getElementById('form-error')!;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitText.textContent = 'Sending…';
+    submitIcon.classList.add('hidden');
+    submitSpinner.classList.remove('hidden');
+    errorMsg.classList.add('hidden');
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        form.classList.add('hidden');
+        successMsg.classList.remove('hidden');
+      } else {
+        const data = await res.json().catch(() => ({}));
+        errorMsg.textContent =
+          data?.errors?.map((e: { message: string }) => e.message).join(', ') ||
+          'Something went wrong. Please email me directly.';
+        errorMsg.classList.remove('hidden');
+        resetButton();
+      }
+    } catch {
+      errorMsg.textContent = 'Something went wrong. Please email me directly.';
+      errorMsg.classList.remove('hidden');
+      resetButton();
+    }
+  });
+
+  function resetButton() {
+    submitBtn.disabled = false;
+    submitText.textContent = 'Send message';
+    submitIcon.classList.remove('hidden');
+    submitSpinner.classList.add('hidden');
+  }
+</script>
