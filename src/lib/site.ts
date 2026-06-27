@@ -7,7 +7,7 @@ export const SITE = {
   github: 'https://github.com/brett-buskirk',
   linkedin: 'https://www.linkedin.com/in/brett-buskirk/',
   // Get this from formspree.io → New Form → copy the 8-char ID from the endpoint URL
-  formspreeId: 'YOUR_FORM_ID',
+  formspreeId: 'xjgqwzol',
 };
 
 export const NAV = [
