@@ -6,6 +6,7 @@ export const SITE = {
   email: 'brett@brett-buskirk.dev',
   github: 'https://github.com/brett-buskirk',
   linkedin: 'https://www.linkedin.com/in/brett-buskirk/',
+  medium: 'https://medium.com/@brett-buskirk',
   // Get this from formspree.io → New Form → copy the 8-char ID from the endpoint URL
   formspreeId: 'xjgqwzol',
 };
