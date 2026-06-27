@@ -1,0 +1,137 @@
+---
+const work = [
+  {
+    index: '01',
+    title: 'Day One',
+    url: 'https://dayone-sim.app',
+    github: 'https://github.com/brett-buskirk/day-one',
+    problem:
+      'Build an offline-capable, phone-first reentry simulation for returning citizens — complex branching logic, 56+ life events, and 148 automated tests, deployed to production with zero manual steps.',
+    built:
+      'React 19 / TypeScript / Vite PWA with Dexie for offline state and serializable run codes. GitHub Actions CI runs typecheck, tests, and production build on every PR. Merge to main: DigitalOcean App Platform picks it up automatically via .do/app.yaml.',
+    tools: ['React 19', 'TypeScript', 'Vite', 'Dexie', 'Docker', 'GitHub Actions', 'DigitalOcean'],
+  },
+  {
+    index: '02',
+    title: 'RC Journey — WordPress to Astro',
+    url: 'https://rcjourney.cloud',
+    github: null,
+    problem:
+      'A publishing site on WordPress + Elementor was expensive to maintain, impossible to customize without fighting the platform, and returning poor Lighthouse scores.',
+    built:
+      'Custom Astro 5 static site with Tailwind CSS v4, Pagefind full-text search, and full content migration of 22 articles with optimized images. GitOps deployment: push to main, DigitalOcean App Platform rebuilds and ships automatically.',
+    tools: ['Astro 5', 'Tailwind CSS v4', 'Pagefind', 'DigitalOcean App Platform', 'GitOps'],
+  },
+  {
+    index: '03',
+    title: 'Terraform VPC + Full Observability',
+    url: null,
+    github: 'https://github.com/brett-buskirk/rcj-infra',
+    problem:
+      'Production services running across multiple DigitalOcean droplets with no centralized visibility — no metrics, no log aggregation, no alerts. Flying blind.',
+    built:
+      'DigitalOcean VPC managed entirely via Terraform + Ansible. Prometheus scrapes every node, Grafana surfaces dashboards, Loki aggregates logs, and Alertmanager routes alerts to Slack. Remote access via Tailscale — zero public management surface.',
+    tools: ['Terraform', 'Ansible', 'Prometheus', 'Grafana', 'Loki', 'Alertmanager', 'DigitalOcean', 'Tailscale'],
+  },
+  {
+    index: '04',
+    title: 'Agentic Delivery in Practice',
+    url: null,
+    github: null,
+    problem:
+      'AI coding agents can move fast — but without project context and guardrails, they produce plausible-looking code that misses the architecture, drifts from the brief, or can\'t be merged.',
+    built:
+      'CLAUDE.md specification patterns and scoping conventions that give agents enough context to do real implementation work on production builds — this site included. Paired with CI integration to keep agent output reviewable and mergeable.',
+    tools: ['Claude Code', 'CLAUDE.md spec pattern', 'GitHub Actions', 'Context engineering'],
+  },
+] as const;
+---
+
+<section id="work" class="border-t border-line px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+  <div class="mx-auto max-w-6xl">
+
+    <div class="mb-12">
+      <p class="font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent">Selected Work</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+        Proof, not promises
+      </h2>
+      <p class="mt-4 max-w-2xl text-muted">
+        Four projects: the problem, what was built, and the tools that shipped it.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-6">
+      {work.map((item) => (
+        <article class="rounded-xl border border-line bg-surface p-6 sm:p-8 lg:grid lg:grid-cols-[auto_1fr] lg:gap-10">
+
+          <!-- Index -->
+          <div class="mb-4 lg:mb-0">
+            <span class="font-mono text-4xl font-bold tabular-nums text-line select-none" aria-hidden="true">
+              {item.index}
+            </span>
+          </div>
+
+          <div>
+            <!-- Title + links -->
+            <div class="mb-5 flex flex-wrap items-center gap-3">
+              <h3 class="text-lg font-semibold text-ink">{item.title}</h3>
+              <div class="flex items-center gap-3">
+                {item.url && (
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 font-mono text-xs text-accent hover:text-accent-2 transition-colors"
+                  >
+                    Live
+                    <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                    </svg>
+                  </a>
+                )}
+                {item.github && (
+                  <a
+                    href={item.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1 font-mono text-xs text-muted hover:text-ink transition-colors"
+                  >
+                    GitHub
+                    <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </div>
+
+            <!-- Problem / Built -->
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <p class="mb-1.5 font-mono text-[10px] font-medium uppercase tracking-widest text-muted">Problem</p>
+                <p class="text-sm leading-relaxed text-muted">{item.problem}</p>
+              </div>
+              <div>
+                <p class="mb-1.5 font-mono text-[10px] font-medium uppercase tracking-widest text-muted">What was built</p>
+                <p class="text-sm leading-relaxed text-muted">{item.built}</p>
+              </div>
+            </div>
+
+            <!-- Tools -->
+            <ul class="mt-5 flex flex-wrap gap-2" role="list" aria-label="Tools used">
+              {item.tools.map((tool) => (
+                <li>
+                  <span class="rounded-md border border-line bg-surface-2 px-2.5 py-1 font-mono text-xs text-mono">
+                    {tool}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>

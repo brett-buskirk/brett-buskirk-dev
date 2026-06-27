@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter/index.css";
+
+/* ── Night-sky palette ─────────────────────────────────────────────────────
+   Deep navy base + single indigo accent. Dark-only. */
+:root {
+  --c-bg:        #090e1b;
+  --c-surface:   #0f1829;
+  --c-surface-2: #162041;
+  --c-line:      #1e2d4a;
+  --c-ink:       #e2e8f0;
+  --c-muted:     #8892a4;
+  --c-accent:    #818cf8;
+  --c-accent-2:  #a5b4fc;
+  --c-mono:      #22d3ee;
+}
+
+@theme inline {
+  --color-bg:        var(--c-bg);
+  --color-surface:   var(--c-surface);
+  --color-surface-2: var(--c-surface-2);
+  --color-line:      var(--c-line);
+  --color-ink:       var(--c-ink);
+  --color-muted:     var(--c-muted);
+  --color-accent:    var(--c-accent);
+  --color-accent-2:  var(--c-accent-2);
+  --color-mono:      var(--c-mono);
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: dark;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--c-bg);
+    color: var(--c-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--c-accent);
+    color: var(--c-bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  a { color: inherit; text-decoration: none; }
+}

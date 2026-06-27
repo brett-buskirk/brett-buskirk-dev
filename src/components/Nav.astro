@@ -1,0 +1,112 @@
+---
+import { SITE, NAV } from '../lib/site';
+---
+
+<header class="sticky top-0 z-40 border-b border-line bg-bg/80 backdrop-blur-md">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <nav class="flex h-16 items-center justify-between" aria-label="Main navigation">
+
+      <a
+        href="/"
+        class="flex items-center gap-2 font-semibold text-ink hover:text-accent transition-colors duration-150"
+        aria-label="Brett Buskirk — home"
+      >
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect width="32" height="32" rx="6" fill="#090e1b"/>
+          <polyline points="8,12 14,16 8,20" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="17" y1="20" x2="25" y2="20" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        Brett Buskirk
+      </a>
+
+      <ul class="hidden md:flex items-center gap-8" role="list">
+        {NAV.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              class="text-sm font-medium text-muted hover:text-ink transition-colors duration-150"
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <a
+        href={`mailto:${SITE.email}`}
+        class="hidden md:inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-bg hover:bg-accent-2 transition-colors duration-150"
+      >
+        Start a project
+      </a>
+
+      <button
+        id="nav-toggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        class="md:hidden p-2 -mr-2 text-muted hover:text-ink transition-colors"
+      >
+        <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+
+  <div id="mobile-nav" class="hidden md:hidden border-t border-line bg-surface" role="dialog" aria-label="Mobile navigation">
+    <div class="mx-auto max-w-6xl px-4 py-4 sm:px-6">
+      <ul class="flex flex-col gap-1" role="list">
+        {NAV.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              class="mobile-nav-link block py-2.5 text-sm font-medium text-muted hover:text-ink transition-colors"
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a
+        href={`mailto:${SITE.email}`}
+        class="mt-4 flex items-center justify-center rounded-md bg-accent px-4 py-2.5 text-sm font-semibold text-bg hover:bg-accent-2 transition-colors"
+      >
+        Start a project
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle')!;
+  const mobileNav = document.getElementById('mobile-nav')!;
+  const iconMenu = document.getElementById('icon-menu')!;
+  const iconClose = document.getElementById('icon-close')!;
+
+  function openNav() {
+    mobileNav.classList.remove('hidden');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close navigation menu');
+    iconMenu.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+  }
+
+  function closeNav() {
+    mobileNav.classList.add('hidden');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation menu');
+    iconMenu.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }
+
+  toggle.addEventListener('click', () => {
+    mobileNav.classList.contains('hidden') ? openNav() : closeNav();
+  });
+
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeNav);
+  });
+</script>

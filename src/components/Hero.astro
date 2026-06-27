@@ -1,0 +1,64 @@
+---
+import { SITE } from '../lib/site';
+---
+
+<section class="relative overflow-hidden px-4 pb-24 pt-20 sm:px-6 sm:pt-28 lg:px-8 lg:pt-36">
+  <!-- Subtle night-sky radial glow -->
+  <div
+    class="pointer-events-none absolute inset-0 -z-10"
+    aria-hidden="true"
+    style="background: radial-gradient(ellipse 100% 55% at 50% 0%, rgba(79,70,229,0.18) 0%, transparent 70%);"
+  ></div>
+
+  <div class="mx-auto max-w-6xl">
+    <div class="max-w-3xl">
+
+      <p class="mb-5 font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent">
+        Brett Buskirk · Platform Engineer
+      </p>
+
+      <h1 class="text-4xl font-bold leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+        I build, migrate, and automate cloud infrastructure for teams that need
+        production&#8209;grade systems without a full&#8209;time platform hire.
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+        Senior infrastructure work at startup speed — I pair deep engineering judgment
+        with agentic tooling to ship in days what used to take weeks.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a
+          href={`mailto:${SITE.email}`}
+          class="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 text-base font-semibold text-bg hover:bg-accent-2 transition-colors duration-150"
+        >
+          Start a project
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+          </svg>
+        </a>
+        <a
+          href="#work"
+          class="inline-flex items-center gap-2 rounded-md border border-line px-6 py-3 text-base font-medium text-muted hover:border-muted hover:text-ink transition-colors duration-150"
+        >
+          See my work
+        </a>
+      </div>
+
+      <!-- Quick credential strip -->
+      <dl class="mt-14 grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-4">
+        {[
+          { label: 'Experience', value: '5+ years' },
+          { label: 'Cloud platforms', value: 'AWS · GCP · DO' },
+          { label: 'IaC', value: 'Terraform · Ansible' },
+          { label: 'Availability', value: 'Open now' },
+        ].map(({ label, value }) => (
+          <div>
+            <dt class="font-mono text-xs uppercase tracking-widest text-muted">{label}</dt>
+            <dd class="mt-1 text-sm font-semibold text-ink">{value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+</section>
