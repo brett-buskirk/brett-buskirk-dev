@@ -35,14 +35,14 @@ const work = [
   },
   {
     index: '04',
-    title: 'Agentic Delivery in Practice',
-    url: null,
-    github: null,
+    title: 'AgentGate — Guardrails for AI-Agent PRs',
+    url: 'https://github.com/marketplace/actions/agentgate-ai-pr-guardrails',
+    github: 'https://github.com/brett-buskirk/agent-gate',
     problem:
-      'AI coding agents can move fast — but without project context and guardrails, they produce plausible-looking code that misses the architecture, drifts from the brief, or can\'t be merged.',
+      'AI coding agents open pull requests fast — but they leak secrets, drift out of scope, skip tests, and slip in dependencies. Teams either rubber-stamp the work or burn senior time reviewing every line.',
     built:
-      'CLAUDE.md specification patterns and scoping conventions that give agents enough context to do real implementation work on production builds — this site included. Paired with CI integration to keep agent output reviewable and mergeable.',
-    tools: ['Claude Code', 'CLAUDE.md spec pattern', 'GitHub Actions', 'Context engineering'],
+      'A CI guardrail — GitHub Action plus CLI — that inspects every agent PR\'s diff for risk signals, posts a structured review comment, and sets a pass/fail check. Six deterministic rules plus an opt-in LLM intent check (AI reviewing AI). Published to npm and the GitHub Marketplace, with 99%+ test coverage enforced in CI.',
+    tools: ['TypeScript', 'GitHub Actions', 'Claude API', 'Vitest', 'npm', 'GitHub Marketplace'],
   },
 ] as const;
 ---
